@@ -35,7 +35,8 @@
   (for/hash ([commit-tag (in-list (directory-list (profile-directory)))])
     (define commit-directory (build-path (profile-directory) commit-tag))
     (define profiles
-      (for/list ([profile (in-directory commit-directory)])
+      (list (file->list commit-directory))
+      #;(for/list ([profile (in-directory commit-directory)])
         (file->list profile)))
     (define combined-profiles
       (for*/fold ([result (hash)])
